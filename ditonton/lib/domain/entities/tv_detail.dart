@@ -8,11 +8,10 @@ class TVDetail extends Equatable {
     required this.genres,
     required this.id,
     required this.lastAirDate,
-    required this.originalTitle,
+    required this.name,
+    required this.originalName,
     required this.overview,
     required this.posterPath,
-    required this.runtime,
-    required this.title,
     required this.voteAverage,
     required this.voteCount,
   });
@@ -21,12 +20,11 @@ class TVDetail extends Equatable {
   final String firstAirDate;
   final List<Genre> genres;
   final int id;
-  final String lastAirDate;
-  final String originalTitle;
+  final String? lastAirDate;
+  final String name;
+  final String originalName;
   final String overview;
   final String posterPath;
-  final int runtime;
-  final String title;
   final double voteAverage;
   final int voteCount;
 
@@ -37,10 +35,10 @@ class TVDetail extends Equatable {
         genres,
         id,
         lastAirDate,
-        originalTitle,
+        name,
+        originalName,
         overview,
         posterPath,
-        title,
         voteAverage,
         voteCount,
       ];
