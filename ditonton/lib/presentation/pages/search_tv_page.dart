@@ -5,7 +5,7 @@ import 'package:ditonton/presentation/widgets/tv_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SearchPageTV extends StatelessWidget {
+class SearchTVPage extends StatelessWidget {
   static const ROUTE_NAME = '/search-tv';
 
   @override

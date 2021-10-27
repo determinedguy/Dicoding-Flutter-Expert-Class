@@ -9,7 +9,7 @@ import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
 import 'package:ditonton/presentation/pages/tv_detail_page.dart';
 import 'package:ditonton/presentation/pages/home_tv_page.dart';
 import 'package:ditonton/presentation/pages/popular_tv_page.dart';
-import 'package:ditonton/presentation/pages/search_page_tv.dart';
+import 'package:ditonton/presentation/pages/search_tv_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_tv_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_tv_page.dart';
 import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
@@ -57,6 +57,24 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<WatchlistMovieNotifier>(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TVListNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TVDetailNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TVSearchNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TopRatedTVNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<PopularTVNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<WatchlistTVNotifier>(),
+        ),
       ],
       child: MaterialApp(
         title: 'Ditonton',
@@ -84,6 +102,22 @@ class MyApp extends StatelessWidget {
               return CupertinoPageRoute(builder: (_) => SearchPage());
             case WatchlistMoviesPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
+            case HomeTVPage.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => HomeTVPage());
+            case PopularTVPage.ROUTE_NAME:
+              return CupertinoPageRoute(builder: (_) => PopularTVPage());
+            case TopRatedTVPage.ROUTE_NAME:
+              return CupertinoPageRoute(builder: (_) => TopRatedTVPage());
+            case TVDetailPage.ROUTE_NAME:
+              final id = settings.arguments as int;
+              return MaterialPageRoute(
+                builder: (_) => TVDetailPage(id: id),
+                settings: settings,
+              );
+            case SearchTVPage.ROUTE_NAME:
+              return CupertinoPageRoute(builder: (_) => SearchTVPage());
+            case WatchlistTVPage.ROUTE_NAME:
+              return MaterialPageRoute(builder: (_) => WatchlistTVPage());
             case AboutPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => AboutPage());
             default:
