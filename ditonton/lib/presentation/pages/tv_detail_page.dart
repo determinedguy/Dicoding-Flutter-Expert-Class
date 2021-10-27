@@ -47,7 +47,7 @@ class _TVDetailPageState extends State<TVDetailPage> {
             return SafeArea(
               child: DetailContent(
                 show,
-                provider.TVRecommendations,
+                provider.tvRecommendations,
                 provider.isAddedToWatchlistTV,
               ),
             );
@@ -73,7 +73,7 @@ class DetailContent extends StatelessWidget {
     return Stack(
       children: [
         CachedNetworkImage(
-          imageUrl: 'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+          imageUrl: 'https://image.tmdb.org/t/p/w500${tv.posterPath}',
           width: screenWidth,
           placeholder: (context, url) => Center(
             child: CircularProgressIndicator(),
@@ -191,15 +191,15 @@ class DetailContent extends StatelessWidget {
                             ),
                             Consumer<TVDetailNotifier>(
                               builder: (context, data, child) {
-                                if (data.recommendationState ==
+                                if (data.tvRecommendationState ==
                                     RequestState.Loading) {
                                   return Center(
                                     child: CircularProgressIndicator(),
                                   );
-                                } else if (data.recommendationState ==
+                                } else if (data.tvRecommendationState ==
                                     RequestState.Error) {
                                   return Text(data.message);
-                                } else if (data.recommendationState ==
+                                } else if (data.tvRecommendationState ==
                                     RequestState.Loaded) {
                                   return Container(
                                     height: 150,
@@ -223,7 +223,7 @@ class DetailContent extends StatelessWidget {
                                               ),
                                               child: CachedNetworkImage(
                                                 imageUrl:
-                                                    'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                                                    'https://image.tmdb.org/t/p/w500${tv.posterPath}',
                                                 placeholder: (context, url) =>
                                                     Center(
                                                   child:
