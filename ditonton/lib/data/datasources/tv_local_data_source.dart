@@ -1,5 +1,5 @@
 import 'package:ditonton/common/exception.dart';
-import 'package:ditonton/data/datasources/db/database_helper.dart';
+import 'package:ditonton/data/datasources/db/database_helper_tv.dart';
 import 'package:ditonton/data/models/tv_table.dart';
 
 abstract class TVLocalDataSource {
@@ -10,14 +10,14 @@ abstract class TVLocalDataSource {
 }
 
 class TVLocalDataSourceImpl implements TVLocalDataSource {
-  final DatabaseHelper databaseHelper;
+  final DatabaseHelperTV databaseHelperTV;
 
-  TVLocalDataSourceImpl({required this.databaseHelper});
+  TVLocalDataSourceImpl({required this.databaseHelperTV});
 
   @override
   Future<String> insertWatchlistTV(TVTable tv) async {
     try {
-      await databaseHelper.insertWatchlistTV(tv);
+      await databaseHelperTV.insertWatchlistTV(tv);
       return 'Added to Watchlist';
     } catch (e) {
       throw DatabaseException(e.toString());
@@ -27,7 +27,7 @@ class TVLocalDataSourceImpl implements TVLocalDataSource {
   @override
   Future<String> removeWatchlistTV(TVTable tv) async {
     try {
-      await databaseHelper.removeWatchlistTV(tv);
+      await databaseHelperTV.removeWatchlistTV(tv);
       return 'Removed from Watchlist';
     } catch (e) {
       throw DatabaseException(e.toString());
@@ -36,7 +36,7 @@ class TVLocalDataSourceImpl implements TVLocalDataSource {
 
   @override
   Future<TVTable?> getTVById(int id) async {
-    final result = await databaseHelper.getTVById(id);
+    final result = await databaseHelperTV.getTVById(id);
     if (result != null) {
       return TVTable.fromMap(result);
     } else {
@@ -46,7 +46,7 @@ class TVLocalDataSourceImpl implements TVLocalDataSource {
 
   @override
   Future<List<TVTable>> getWatchlistTV() async {
-    final result = await databaseHelper.getWatchlistTV();
+    final result = await databaseHelperTV.getWatchlistTV();
     return result.map((data) => TVTable.fromMap(data)).toList();
   }
 }
