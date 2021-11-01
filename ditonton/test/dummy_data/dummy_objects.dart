@@ -1,7 +1,10 @@
 import 'package:ditonton/data/models/movie_table.dart';
+import 'package:ditonton/data/models/tv_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/movie_detail.dart';
+import 'package:ditonton/domain/entities/tv.dart';
+import 'package:ditonton/domain/entities/tv_detail.dart';
 
 final testMovie = Movie(
   adult: false,
@@ -56,4 +59,56 @@ final testMovieMap = {
   'overview': 'overview',
   'posterPath': 'posterPath',
   'title': 'title',
+};
+
+final testTV = TV(
+  backdropPath: '/qw3J9cNeLioOLoR68WX7z79aCdK.jpg',
+  firstAirDate: '2021-09-17',
+  genreIds: [10759, 9648, 18],
+  id: 93405,
+  lastAirDate: '',
+  name: 'Squid Game',
+  originalName: '오징어 게임',
+  overview: "Hundreds of cash-strapped players accept a strange invitation to compete in children's games—with high stakes. But, a tempting prize awaits the victor.",
+  popularity: 3575.758,
+  posterPath: '/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg',
+  voteAverage: 7.8,
+  voteCount: 8404,
+);
+
+final testTVList = [testTV];
+
+final testTVDetail = TVDetail(
+  backdropPath: 'backdropPath',
+  firstAirDate: 'firstAirDate',
+  genres: [Genre(id: 1, name: 'Action')],
+  id: 1,
+  lastAirDate: 'lastAirDate',
+  name: 'name',
+  originalName: 'originalName',
+  overview: 'overview',
+  posterPath: 'posterPath',
+  voteAverage: 1,
+  voteCount: 1,
+);
+
+final testWatchlistTV = TV.watchlist(
+  id: 1,
+  name: 'name',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
+final testTVTable = TVTable(
+  id: 1,
+  name: 'name',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
+final testTVMap = {
+  'id': 1,
+  'name': 'name',
+  'overview': 'overview',
+  'posterPath': 'posterPath',
 };
