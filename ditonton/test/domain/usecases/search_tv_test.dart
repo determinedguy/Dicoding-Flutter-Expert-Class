@@ -16,7 +16,7 @@ void main() {
   });
 
   final tTV = <TV>[];
-  final tQuery = 'Squid Games';
+  final tQuery = 'Squid Game';
 
   test('should get list of tv shows from the repository', () async {
     // arrange
