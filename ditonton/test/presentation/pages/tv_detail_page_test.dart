@@ -28,6 +28,31 @@ void main() {
     );
   }
 
+  testWidgets('Page should display progress bar when loading',
+      (WidgetTester tester) async {
+    when(mockNotifier.tvState).thenReturn(RequestState.Loading);
+
+    final progressFinder = find.byType(CircularProgressIndicator);
+    final centerFinder = find.byType(Center);
+
+    await tester.pumpWidget(_makeTestableWidget(TVDetailPage(id: 1)));
+
+    expect(centerFinder, findsOneWidget);
+    expect(progressFinder, findsOneWidget);
+  });
+
+  testWidgets('Page should display text with message when Error',
+      (WidgetTester tester) async {
+    when(mockNotifier.tvState).thenReturn(RequestState.Error);
+    when(mockNotifier.message).thenReturn('Error message');
+
+    final textFinder = find.byKey(Key('error_message'));
+
+    await tester.pumpWidget(_makeTestableWidget(TVDetailPage(id: 1)));
+
+    expect(textFinder, findsOneWidget);
+  });
+
   testWidgets(
       'Watchlist button should display add icon when tv not added to watchlist',
       (WidgetTester tester) async {
@@ -45,7 +70,7 @@ void main() {
   });
 
   testWidgets(
-      'Watchlist button should dispay check icon when tv is added to wathclist',
+      'Watchlist button should display check icon when tv is added to wathclist',
       (WidgetTester tester) async {
     when(mockNotifier.tvState).thenReturn(RequestState.Loaded);
     when(mockNotifier.tv).thenReturn(testTVDetail);

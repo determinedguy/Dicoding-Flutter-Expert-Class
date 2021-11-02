@@ -28,6 +28,31 @@ void main() {
     );
   }
 
+  testWidgets('Page should display progress bar when loading',
+      (WidgetTester tester) async {
+    when(mockNotifier.movieState).thenReturn(RequestState.Loading);
+
+    final progressFinder = find.byType(CircularProgressIndicator);
+    final centerFinder = find.byType(Center);
+
+    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+
+    expect(centerFinder, findsOneWidget);
+    expect(progressFinder, findsOneWidget);
+  });
+
+  testWidgets('Page should display text with message when Error',
+      (WidgetTester tester) async {
+    when(mockNotifier.movieState).thenReturn(RequestState.Error);
+    when(mockNotifier.message).thenReturn('Error message');
+
+    final textFinder = find.byKey(Key('error_message'));
+
+    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+
+    expect(textFinder, findsOneWidget);
+  });
+
   testWidgets(
       'Watchlist button should display add icon when movie not added to watchlist',
       (WidgetTester tester) async {
