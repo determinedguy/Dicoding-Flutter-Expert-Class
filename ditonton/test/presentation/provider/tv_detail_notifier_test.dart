@@ -215,6 +215,18 @@ void main() {
       expect(provider.watchlistMessage, 'Failed');
       expect(listenerCallCount, 1);
     });
+
+    test('should update watchlist message when remove watchlist failed', () async {
+      // arrange
+      when(mockRemoveWatchlistTV.execute(testTVDetail))
+          .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+      when(mockGetWatchlistTVStatus.execute(testTVDetail.id))
+          .thenAnswer((_) async => false);
+      // act
+      await provider.removeFromWatchlistTV(testTVDetail);
+      // assert
+      expect(provider.watchlistMessage, 'Failed');
+    });
   });
 
   group('on Error', () {
