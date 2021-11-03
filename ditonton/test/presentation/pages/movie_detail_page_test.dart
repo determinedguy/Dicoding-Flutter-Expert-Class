@@ -46,7 +46,7 @@ void main() {
     when(mockNotifier.movieState).thenReturn(RequestState.Error);
     when(mockNotifier.message).thenReturn('Error message');
 
-    final textFinder = find.byKey(Key('error_message'));
+    final textFinder = find.byType(Text);
 
     await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
 
